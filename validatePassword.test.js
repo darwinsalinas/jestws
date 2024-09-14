@@ -10,4 +10,10 @@ describe("validatePassword", () => {
       "Password must have at least a letter"
     );
   });
+
+  it("password must have at least an uppercase letter", () => {
+    expect(validatePassword("1234567s")).toBe(
+      "password must have at least a uppercase letter"
+    );
+  });
 });
