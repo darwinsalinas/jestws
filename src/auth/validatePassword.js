@@ -11,4 +11,6 @@ export const validatePassword = (password) => {
   if (password === lowerCasePassword) {
     return "password must have at least a uppercase letter";
   }
+
+  const validSpecialChars = ["@", "$", "!"];
 };

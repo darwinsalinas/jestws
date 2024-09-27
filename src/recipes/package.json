@@ -1,0 +1,22 @@
+{
+  "name": "recipes",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "test": "jest --watch --verbose"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.1",
+    "hono": "^4.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.11.17",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.7.1"
+  }
+}
