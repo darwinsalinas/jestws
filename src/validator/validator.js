@@ -1,3 +1,5 @@
+console.log("Eliseo was here");
+
 export const validator = (rules, data) => {
   const validData = [];
   const errors = [];
@@ -80,3 +82,5 @@ export const validator = (rules, data) => {
     errors,
   };
 };
+
+console.log("Avimelex was here");
