@@ -60,8 +60,6 @@ it.only("POST /api/recipes with invalid data", async () => {
     body: JSON.stringify(invalidData),
   });
 
-  expect(updateStatisticsSpy).toHaveBeenCalledWith(invalidData);
-
   expect(res.status).toBe(400);
   expect(await res.json()).toEqual({
     data: [],

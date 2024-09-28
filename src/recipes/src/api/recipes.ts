@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { z } from "zod"
 import {
   addRecipe,
   deleteRecipe,
@@ -36,6 +37,22 @@ app.get("/", (c) => {
 });
 
 app.post("/", async (c) => {
+  const schema = z.object({
+    name: z.string().max(10).min(3),
+    ingredients: z.array(z.string()).min(1),
+    instructions: z.array(z.string()).min(1)
+  })
+
+
+  try {
+    const body = await c.req.json()
+    const data = schema.parse(body);
+    console.log({ data });
+  } catch (error) {
+    console.log("Error Here::", error);
+
+  }
+
   const recipe = await c.req.json();
 
   const { validData, errors } = validator([
