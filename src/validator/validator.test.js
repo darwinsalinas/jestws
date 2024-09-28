@@ -59,7 +59,7 @@ describe("passwordValidator", () => {
       },
     ]);
   });
-  it("validates number inputs", () => {
+  it("validates number input", () => {
     const { errors } = validator([{ age: "number" }], [{ age: "cincuenta" }]);
 
     expect(errors).toEqual([
