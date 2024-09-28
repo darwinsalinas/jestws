@@ -12,26 +12,60 @@ export const validator = (rules, data) => {
       const [validation, validationValue] = fieldRule.split(":");
 
       const itemToValidate = data.find((it) => it.hasOwnProperty(key));
+      const valueIsNotANumber = isNaN(itemToValidate[key]);
       switch (validation) {
+        case "number":
+          if (isNaN(itemToValidate[key])) {
+            errors.push({
+              [key]: `${key} must be a number`,
+            });
+            break;
+          }
+          validData.push(itemToValidate);
+          break;
         case "min":
-          if (itemToValidate[key].length >= Number(validationValue)) {
+          if (valueIsNotANumber) {
+            if (itemToValidate[key].length >= Number(validationValue)) {
+              validData.push(itemToValidate);
+              break;
+            }
+
+            errors.push({
+              [key]: `${key} must contains at least ${validationValue} characters`,
+            });
+            break;
+          }
+
+          if (itemToValidate[key] >= Number(validationValue)) {
             validData.push(itemToValidate);
             break;
           }
 
           errors.push({
-            [key]: `${key} must contains at least ${validationValue} characters`,
+            [key]: `${key} must be min ${validationValue}`,
           });
           break;
 
         case "max":
-          if (itemToValidate[key].length <= Number(validationValue)) {
+          if (valueIsNotANumber) {
+            if (itemToValidate[key].length <= Number(validationValue)) {
+              validData.push(itemToValidate);
+              break;
+            }
+
+            errors.push({
+              [key]: `${key} must contains max ${validationValue} characters`,
+            });
+            break;
+          }
+
+          if (itemToValidate[key] <= Number(validationValue)) {
             validData.push(itemToValidate);
             break;
           }
 
           errors.push({
-            [key]: `${key} must contains max ${validationValue} characters`,
+            [key]: `${key} must be max ${validationValue}`,
           });
           break;
 

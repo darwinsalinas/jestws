@@ -47,7 +47,7 @@ describe("passwordValidator", () => {
     ]);
   });
 
-  it.only("validates numbers with min and max length", () => {
+  it("validates numbers with min and max length", () => {
     const { errors } = validator(
       [{ age: "number|min:18|max:100" }],
       [{ age: 200 }]
@@ -56,6 +56,15 @@ describe("passwordValidator", () => {
     expect(errors).toEqual([
       {
         age: "age must be max 100",
+      },
+    ]);
+  });
+  it("validates number inputs", () => {
+    const { errors } = validator([{ age: "number" }], [{ age: "cincuenta" }]);
+
+    expect(errors).toEqual([
+      {
+        age: "age must be a number",
       },
     ]);
   });
