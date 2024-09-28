@@ -14,6 +14,10 @@ test.skip("adds 2 + 2 to equal 4", () => {
   expect(validateParametersSpy).toHaveBeenCalledWith(2, 4);
 });
 
+test.skip("throwsss an error with string parameters", () => {
+  expect(sum("fg", "bc")).toBe("Not valid parameter");
+});
+
 test.skip("adds 10 + 20 to equal 30", () => {
   expect(sum(18, 10)).toBe(28);
 });
