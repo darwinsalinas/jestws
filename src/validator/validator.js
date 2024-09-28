@@ -1,5 +1,6 @@
-console.log("Eliseo was here");
-
+/**
+ * Validates user inputs with min and max rules
+ */
 export const validator = (rules, data) => {
   const validData = [];
   const errors = [];
@@ -84,3 +85,4 @@ export const validator = (rules, data) => {
 };
 
 console.log("Avimelex was here");
+console.log("Darwin was here");
