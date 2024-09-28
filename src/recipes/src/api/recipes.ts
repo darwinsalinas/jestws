@@ -7,7 +7,8 @@ import {
   updateRecipe,
 } from "../database";
 
-// import { validator } from "../../../validator/validator"
+import { validator } from "../../../validator/validator"
+import { updateStatistics } from "./helpers";
 
 const app = new Hono();
 
@@ -37,15 +38,31 @@ app.get("/", (c) => {
 app.post("/", async (c) => {
   const recipe = await c.req.json();
 
-  // const { validData, errors } = validator([
-  //   { name: "min:100" },
-  // ], [{ name: recipe.name }]);
+  const { validData, errors } = validator([
+    { name: "min:3", ingredients: "min:1" },
+  ], [{ name: recipe.name }]);
 
-  // console.log({ validData, errors });
+
+  if (errors.length) {
+    c.status(400)
+
+    updateStatistics(recipe)
+
+    return c.json({
+      data: [],
+      errors: [
+        "name can not be an empty string",
+        "ingredients can not be empty",
+        "instructions can not be empty",
+      ]
+    })
+  }
 
   addRecipe(recipe);
 
   c.status(201);
+
+
 
   return c.json({
     data: recipe,
